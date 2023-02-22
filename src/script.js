@@ -13,7 +13,7 @@ const canvas = document.querySelector('canvas.webgl')
 const earthObject = new THREE.Group()
 // Scene
 const scene = new THREE.Scene()
-const sunLight = new THREE.DirectionalLight('white', 2)
+const sunLight = new THREE.DirectionalLight('white', 1)
 const ambientLight = new THREE.AmbientLight('#b9d5ff', 3)
 scene.add(sunLight, ambientLight);
 
@@ -21,6 +21,10 @@ var guiControls = new function() {
   this.color = sunLight.color.getStyle();
 }();
 gui.add(sunLight, 'intensity').min(.5).max(3)
+gui.add(sunLight.position, 'x').min(-10).max(10).step(.1)
+gui.add(sunLight.position, 'y').min(-10).max(10).step(.1)
+gui.add(sunLight.position, 'z').min(-10).max(10).step(.1)
+
 gui
   .addColor(guiControls, "color")
   .listen()
